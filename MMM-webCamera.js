@@ -17,11 +17,13 @@ Module.register("MMM-webCamera", {
   },
 
   notificationReceived: function(notification, payload, sender) {
-		if (notification === "CAMERA_ON") {
+	  if(sender) {
+		if (notification === "COMMAND") {
 			if (payload === "take a picture"){
-				sendSocketNotification(notification, payload);
+				sendSocketNotification("CAMERA_ON", payload);
 			}
 		}
-	},
+	  }
+  },
 
 });
