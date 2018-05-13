@@ -1,8 +1,7 @@
-'use strict';
 
 Module.register("MMM-webCamera", {
 	defaults: {
-        width: 1280,
+      				width: 1280,
 				height: 720,
 				quality: 100,
 				delay: 0,
@@ -19,8 +18,8 @@ Module.register("MMM-webCamera", {
   notificationReceived: function(notification, payload, sender) {
 	  if(sender) {
 		if (notification === "COMMAND") {
-			if (payload === "take a picture"){
-				sendSocketNotification("CAMERA_ON", payload);
+			if (payload === " take a picture"){
+				this.sendSocketNotification("CAMERA_ON", payload);
 			}
 		}
 	  }
