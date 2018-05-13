@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/BinSin/MMM-webCamera#readme",
   "dependencies": {
-    "child-process-promise": "^2.2.1"
+    "child-process-promise": "^2.2.1",
+    "webcam.js": "^1.0.1"
   }
 }
