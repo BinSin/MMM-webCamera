@@ -54,6 +54,10 @@ module.exports = NodeHelper.create({
     console.log("Starting node helper for: " + this.name);
   },
 
+  init_camera(payload) {
+    
+  },
+
   socketNotificationReceived: function(notification, payload) {
     /*
     if (notification === 'CAMERA_ON') {
@@ -90,5 +94,11 @@ module.exports = NodeHelper.create({
     }
     */
   },
+
+  sendSocketNotification: function(notification, payload) {
+    if(notification === "INIT_CAMERA") {
+      this.init_camera(payload);
+    }
+  }
 
 });
