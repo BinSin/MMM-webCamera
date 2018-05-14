@@ -5,6 +5,9 @@
 
 var NodeHelper = require("node_helper");
 var WebCamera = require("webcam.js");
+var NodeWebcam = require("node-webcam");
+var opts = {};
+var Webcam = null;
 
 module.exports = NodeHelper.create({
 
@@ -13,9 +16,29 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-
+    opts = {
+      width: 1280,
+      height: 720,
+      quality: 100,
+      delay: 0,
+      saveShots: true,
+      output: "jpeg",
+      device: false,
+      callbackReturn: "location",
+      verbose: false
+    };
   },
 
+  socketNotificationReceived: function(notification, payload) {
+    if(notification == "INIT_CAMERA") {
+      initCamera(payload);
+    }
+    if (notification == 'CAMERA_ON') {
+      Webcam = NodeWebcam.create( opts );
+    }
+  },
+
+/*
   socketNotificationReceived: function(notification, payload) {
     var self = this;
     var wcm = null;
@@ -68,8 +91,8 @@ module.exports = NodeHelper.create({
     else if (notification == "CAMERA_OFF") {
       wcm.stopCamera();
     }
-  
+
   },
 
-
+*/
 });
