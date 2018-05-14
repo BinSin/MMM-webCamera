@@ -16,7 +16,8 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-    opts = {
+    var self = this;
+    self.opts = {
       width: 1280,
       height: 720,
       quality: 100,
