@@ -25,7 +25,7 @@ module.exports = NodeHelper.create({
     }
 
     if (notification == 'CAMERA_ON') {
-        var wcm = new WebCamera({
+        wcm = new WebCamera({
            videoTag: document.getElementById("video"),
            constraints: {
                video: {
@@ -63,8 +63,7 @@ module.exports = NodeHelper.create({
              ctx.drawImage(imageBitmap, 0, 0);
          });
 
-      });
-    }
+      }
 /*
     else if (notification == "CAMERA_OFF") {
       wcm.stopCamera();
