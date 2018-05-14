@@ -49,7 +49,7 @@ module.exports = NodeHelper.create({
 */
   socketNotificationReceived: function(notification, payload) {
     if(notification === "INIT_CAMERA") {
-      this.initCamera(payload);
+      //this.initCamera(payload);
     }
     /*
     if (notification === 'CAMERA_ON') {
