@@ -12,7 +12,9 @@ Module.register("MMM-webCamera", {
 	},
 
   start: function() {
-	  Log.log("Starting module: MMM-webCamera");
+		var self = this;
+	  Log.log("Starting module: " + this.name);
+
 		var self = this;
 		this.sendSocketNotification("INIT_CAMERA", self.config);
   },
