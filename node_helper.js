@@ -32,7 +32,15 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-
+    var wcm = new WebCamera({
+       videoTag: document.getElementById("video"),
+       constraints: {
+           video: {
+               width: payload.width,
+               height: payload.height,
+           }
+       }
+   });
   },
 
   socketNotificationReceived: function(notification, payload) {
@@ -42,7 +50,6 @@ module.exports = NodeHelper.create({
     }
 
     if (notification == 'CAMERA_ON') {
-
 
        wcm.startCamera();
 
@@ -59,7 +66,7 @@ module.exports = NodeHelper.create({
     }
 
     else if (notification == "TAKE_A_PICTURE") {
-      
+
     }
 
     else if (notification == "CAMERA_OFF") {
