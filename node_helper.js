@@ -36,17 +36,6 @@ var wcm = new WebCamera({
 
  wcm.startCamera();
 
- //grabFrame() takes a snapshot of the live video
- wcm.grabFrame().then(function (imageBitmap) {
-
- var canvas = document.getElementById("canvas");
- canvas.width = imageBitmap.width;
- canvas.height = imageBitmap.height;
- var ctx = canvas.getContext("2d");
- ctx.drawImage(imageBitmap, 0, 0);
-
-});
-
 
 module.exports = NodeHelper.create({
 
@@ -63,7 +52,6 @@ module.exports = NodeHelper.create({
       this.initCamera(payload);
     }
 
-    /*
     if (notification === 'CAMERA_ON') {
 
       wcm.startCamera();
@@ -77,7 +65,10 @@ module.exports = NodeHelper.create({
       var ctx = canvas.getContext("2d");
       ctx.drawImage(imageBitmap, 0, 0);
 
+     });
+
     }
+    /*
     else if (notification === "TAKE_A_PICTURE") {
       //take photo
       wcm.takePhoto()
@@ -92,11 +83,13 @@ module.exports = NodeHelper.create({
              var ctx = canvas.getContext("2d");
              ctx.drawImage(imageBitmap, 0, 0);
          });
+
     }
+     */
     else if (notification === "CAMERA_OFF") {
 	     wcm.stopCamera();
     }
 
   },
-  */
+
 });
