@@ -66,7 +66,7 @@ module.exports = NodeHelper.create({
       });
     }
     */
-    
+
     /*
     if (notification === 'CAMERA_ON') {
 
@@ -100,7 +100,7 @@ module.exports = NodeHelper.create({
     else if (notification === "CAMERA_OFF") {
 	     wcm.stopCamera();
     }
-    */
-  },
 
+  },
+  */
 });

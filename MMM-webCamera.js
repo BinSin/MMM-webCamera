@@ -18,6 +18,7 @@ Module.register("MMM-webCamera", {
   },
 
   notificationReceived: function(notification, payload, sender) {
+		var self = this;
 	  if(sender) {
 			if (notification === "COMMAND") {
 				if (payload === " camera on"){
