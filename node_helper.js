@@ -51,7 +51,7 @@ module.exports = NodeHelper.create({
     if(notification === "INIT_CAMERA") {
       this.initCamera(payload);
     }
-
+    /*
     if (notification === 'CAMERA_ON') {
 
       wcm.startCamera();
@@ -68,6 +68,8 @@ module.exports = NodeHelper.create({
      });
 
     }
+    */
+
     /*
     else if (notification === "TAKE_A_PICTURE") {
       //take photo
@@ -86,10 +88,12 @@ module.exports = NodeHelper.create({
 
     }
      */
+
+     /*
     else if (notification === "CAMERA_OFF") {
 	     wcm.stopCamera();
     }
-
+    */
   },
 
 });
