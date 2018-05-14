@@ -6,6 +6,16 @@
 var NodeHelper = require("node_helper");
 var WebCamera = require("webcam.js");
 
+var wcm = new WebCamera({
+ videoTag: document.getElementById("video"),
+ constraints: {
+     video: {
+         width: 640,
+         height: 480,
+       }
+ }
+});
+
 /*
 var wcm = new WebCamera({
   videoTag: document.getElementById("video"),
@@ -42,15 +52,7 @@ module.exports = NodeHelper.create({
     }
 
     if (notification == 'CAMERA_ON') {
-      var wcm = new WebCamera({
-       videoTag: document.getElementById("video"),
-       constraints: {
-           video: {
-               width: 640,
-               height: 480,
-             }
-       }
-      });
+
 
        wcm.startCamera();
 
