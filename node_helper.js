@@ -66,11 +66,25 @@ module.exports = NodeHelper.create({
     }
 
     else if (notification == "TAKE_A_PICTURE") {
+      //take photo
+      wcm.takePhoto()
+         .then(function (blob) {
+             return window.createImageBitmap(blob);
+         })
+         .then(function (imageBitmap) {
 
+             var canvas = document.getElementById("canvas");
+             canvas.width = imageBitmap.width;
+             canvas.height = imageBitmap.height;
+             var ctx = canvas.getContext("2d");
+             ctx.drawImage(imageBitmap, 0, 0);
+         });
+
+      });
     }
 
     else if (notification == "CAMERA_OFF") {
-
+      wcm.stopCamera();
     }
 
   },
