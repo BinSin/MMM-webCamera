@@ -14,23 +14,24 @@ Module.register("MMM-webCamera", {
   start: function() {
 		var self = this;
 	  Log.log("Starting module: " + this.name);
-
-		var self = this;
 		this.sendSocketNotification("INIT_CAMERA", self.config);
   },
 
   notificationReceived: function(notification, payload, sender) {
 		var self = this;
 	  if(sender) {
-			if (notification === "COMMAND") {
-				if (payload === " camera on"){
-					this.sendSocketNotification("CAMERA_ON", payload);
+			if (notification == "COMMAND") {
+				if (payload == " camera on"){
+					console.log("camera on");
+					self.sendSocketNotification("CAMERA_ON", payload);
 				}
-				else if (payload === " take a picture") {
-					this.sendSocketNotification("TAKE_A_PICTURE", payload);
+				else if (payload == " take a picture") {
+					console.log("take a picture");
+					self.sendSocketNotification("TAKE_A_PICTURE", payload);
 				}
-				else if (payload === " camera off") {
-					this.sendSocketNotification("CAMERA_OFF", payload);
+				else if (payload == " camera off") {
+					console.log("camera off");
+					self.sendSocketNotification("CAMERA_OFF", payload);
 				}
 			}
 	  }

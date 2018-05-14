@@ -37,11 +37,11 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload) {
 
-    if(notification === "INIT_CAMERA") {
+    if(notification == "INIT_CAMERA") {
       this.initCamera(payload);
     }
 
-    if (notification === 'CAMERA_ON') {
+    if (notification == 'CAMERA_ON') {
       var wcm = new WebCamera({
        videoTag: document.getElementById("video"),
        constraints: {
@@ -66,11 +66,11 @@ module.exports = NodeHelper.create({
       });
     }
 
-    else if (notification === "TAKE_A_PICTURE") {
+    else if (notification == "TAKE_A_PICTURE") {
 
     }
 
-    else if (notification === "CAMERA_OFF") {
+    else if (notification == "CAMERA_OFF") {
 
     }
 
