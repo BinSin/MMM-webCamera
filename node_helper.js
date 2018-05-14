@@ -46,7 +46,7 @@ module.exports = NodeHelper.create({
   socketNotificationReceived: function(notification, payload) {
     var self = this;
     if(notification == "INIT_CAMERA") {
-      this.initCamera(self.payload);
+      initCamera(payload);
     }
 
     if (notification == 'CAMERA_ON') {
@@ -86,8 +86,8 @@ module.exports = NodeHelper.create({
     else if (notification == "CAMERA_OFF") {
       wcm.stopCamera();
     }
-
-  },
   */
+  },
+
 
 });
