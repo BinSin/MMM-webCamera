@@ -39,7 +39,7 @@ var wcm = new WebCamera({
 
 
 module.exports = NodeHelper.create({
-
+/*
   start: function() {
     console.log("Starting node helper for: " + this.name);
   },
@@ -47,7 +47,7 @@ module.exports = NodeHelper.create({
   initCamera: funtion(payload) {
 
   },
-
+*/
 
 /*
   socketNotificationReceived: function(notification, payload) {
