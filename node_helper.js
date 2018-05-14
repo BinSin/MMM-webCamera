@@ -6,25 +6,6 @@
 var NodeHelper = require("node_helper");
 var WebCamera = require("webcam.js");
 
-/*
-var wcm = new WebCamera({
-  videoTag: document.getElementById("video"),
-    constraints: {
-      video: {
-
-        width: payload.width,
-        height: payload.height,
-         quality: payload.quality,
-         delay: payload.delay,
-         saveShots: payload.saveShots,
-         output: payload.output,
-         device: payload.device,
-         callbackReturn: payload.callbackReturn,
-    }
- }
-});
-*/
-
 module.exports = NodeHelper.create({
 
   start: function() {
@@ -32,25 +13,27 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-    var wcm = new WebCamera({
-       videoTag: document.getElementById("video"),
-       constraints: {
-           video: {
-               width: payload.width,
-               height: payload.height,
-           }
-       }
-   });
+
   },
 
   socketNotificationReceived: function(notification, payload) {
     var self = this;
+    var wcm = null;
+
     if(notification == "INIT_CAMERA") {
       initCamera(payload);
     }
 
     if (notification == 'CAMERA_ON') {
-
+        var wcm = new WebCamera({
+           videoTag: document.getElementById("video"),
+           constraints: {
+               video: {
+                   width: payload.width,
+                   height: payload.height,
+               }
+           }
+       });
        wcm.startCamera();
 
        //grabFrame() takes a snapshot of the live video
