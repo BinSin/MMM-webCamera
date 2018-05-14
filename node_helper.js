@@ -24,6 +24,7 @@ var wcm = new WebCamera({
  }
 });
 */
+
 var wcm = new WebCamera({
        videoTag: document.getElementById("video"),
        constraints: {
@@ -38,7 +39,7 @@ var wcm = new WebCamera({
 
 
 module.exports = NodeHelper.create({
-/*
+
   start: function() {
     console.log("Starting node helper for: " + this.name);
   },
@@ -46,12 +47,15 @@ module.exports = NodeHelper.create({
   initCamera: funtion(payload) {
 
   },
-*/
+
+
+/*
   socketNotificationReceived: function(notification, payload) {
+
     if(notification === "INIT_CAMERA") {
-      //this.initCamera(payload);
+      this.initCamera(payload);
     }
-    /*
+
     if (notification === 'CAMERA_ON') {
 
       wcm.startCamera();
@@ -68,9 +72,7 @@ module.exports = NodeHelper.create({
      });
 
     }
-    */
 
-    /*
     else if (notification === "TAKE_A_PICTURE") {
       //take photo
       wcm.takePhoto()
@@ -87,13 +89,12 @@ module.exports = NodeHelper.create({
          });
 
     }
-     */
 
-     /*
     else if (notification === "CAMERA_OFF") {
 	     wcm.stopCamera();
     }
-    */
   },
+
+*/
 
 });
