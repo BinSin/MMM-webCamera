@@ -48,20 +48,20 @@ module.exports = NodeHelper.create({
                  }
              }
       });
+
+       wcm.startCamera();
+
+       //grabFrame() takes a snapshot of the live video
+       wcm.grabFrame().then(function (imageBitmap) {
+
+       var canvas = document.getElementById("canvas");
+       canvas.width = imageBitmap.width;
+       canvas.height = imageBitmap.height;
+       var ctx = canvas.getContext("2d");
+       ctx.drawImage(imageBitmap, 0, 0);
+
+      });
     }
-
-     wcm.startCamera();
-
-     //grabFrame() takes a snapshot of the live video
-     wcm.grabFrame().then(function (imageBitmap) {
-
-     var canvas = document.getElementById("canvas");
-     canvas.width = imageBitmap.width;
-     canvas.height = imageBitmap.height;
-     var ctx = canvas.getContext("2d");
-     ctx.drawImage(imageBitmap, 0, 0);
-
-    });
     /*
     if (notification === 'CAMERA_ON') {
 
