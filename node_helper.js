@@ -6,6 +6,7 @@
 var NodeHelper = require("node_helper");
 var WebCamera = require("webcam.js");
 var NodeWebcam = require("node-webcam");
+var self = this;
 var opts = {};
 var Webcam = null;
 
@@ -16,7 +17,6 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-    var self = this;
     self.opts = {
       width: 1280,
       height: 720,
@@ -32,16 +32,14 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload) {
     if(notification == "INIT_CAMERA") {
-      initCamera(payload);
+      self.initCamera(self.payload);
     }
     if (notification == 'CAMERA_ON') {
-      var self = this;
-      self.Webcam = NodeWebcam.create( opts );
-      self.sendSocketNotification("SEND", opts);
+      self.Webcam = NodeWebcam.create( self.opts );
+      self.sendSocketNotification("SEND", self.opts);
     }
     else if (notification == "TAKE_A_PICTURE") {
-      var self = this;
-      this.sendSocketNotification("SENDER", "abc");
+      self.sendSocketNotification("SENDER", "abc");
       self.Webcam.capture( "test_picture", function( err, data ) {} );
     }
   },
