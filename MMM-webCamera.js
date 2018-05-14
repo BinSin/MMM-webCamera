@@ -1,7 +1,7 @@
 
 Module.register("MMM-webCamera", {
 	defaults: {
-      				width: 1280,
+      	width: 1280,
 				height: 720,
 				quality: 100,
 				delay: 0,
@@ -12,7 +12,7 @@ Module.register("MMM-webCamera", {
 	},
 
   start: function() {
-	  Log.log("Start webCamera");
+	  Log.log("Starting module: MMM-webCamera");
 	  var self = this;
 	  this.sendSocketNotification("CAMERA_INIT", self.config);
   },
@@ -24,10 +24,10 @@ Module.register("MMM-webCamera", {
 				this.sendSocketNotification("CAMERA_ON", payload);
 			}
 			else if (payload === " take a picture") {
-				this.sendSockectNotification("TAKE_A_PICTURE", payload);
+				this.sendSocketNotification("TAKE_A_PICTURE", payload);
 			}
 			else if (payload === " camera off") {
-				this.sendSockectNotification("CAMERA_OFF", payload);
+				this.sendSocketNotification("CAMERA_OFF", payload);
 			}
 		}
 	  }
