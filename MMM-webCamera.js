@@ -19,17 +19,17 @@ Module.register("MMM-webCamera", {
 
   notificationReceived: function(notification, payload, sender) {
 	  if(sender) {
-		if (notification === "COMMAND") {
-			if (payload === " camera on"){
-				this.sendSocketNotification("CAMERA_ON", payload);
+			if (notification === "COMMAND") {
+				if (payload === " camera on"){
+					this.sendSocketNotification("CAMERA_ON", payload);
+				}
+				else if (payload === " take a picture") {
+					this.sendSocketNotification("TAKE_A_PICTURE", payload);
+				}
+				else if (payload === " camera off") {
+					this.sendSocketNotification("CAMERA_OFF", payload);
+				}
 			}
-			else if (payload === " take a picture") {
-				this.sendSocketNotification("TAKE_A_PICTURE", payload);
-			}
-			else if (payload === " camera off") {
-				this.sendSocketNotification("CAMERA_OFF", payload);
-			}
-		}
 	  }
   },
 
