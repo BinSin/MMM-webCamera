@@ -25,28 +25,7 @@ var wcm = new WebCamera({
 });
 */
 
-var wcm = new WebCamera({
-       videoTag: document.getElementById("video"),
-       constraints: {
-           video: {
-               width: 640,
-               height: 480,
-           }
-       }
-   });
 
- wcm.startCamera();
-
- //grabFrame() takes a snapshot of the live video
- wcm.grabFrame().then(function (imageBitmap) {
-
- var canvas = document.getElementById("canvas");
- canvas.width = imageBitmap.width;
- canvas.height = imageBitmap.height;
- var ctx = canvas.getContext("2d");
- ctx.drawImage(imageBitmap, 0, 0);
-
-});
 
 module.exports = NodeHelper.create({
 
@@ -54,11 +33,35 @@ module.exports = NodeHelper.create({
     console.log("Starting node helper for: " + this.name);
   },
 
-  init_camera(payload) {
-    
+  initCamera: funtion(payload) {
+
   },
 
   socketNotificationReceived: function(notification, payload) {
+    if(notification === "CAMERA_ON" ) {
+      var wcm = new WebCamera({
+             videoTag: document.getElementById("video"),
+             constraints: {
+                 video: {
+                     width: 640,
+                     height: 480,
+                 }
+             }
+      });
+    }
+
+     wcm.startCamera();
+
+     //grabFrame() takes a snapshot of the live video
+     wcm.grabFrame().then(function (imageBitmap) {
+
+     var canvas = document.getElementById("canvas");
+     canvas.width = imageBitmap.width;
+     canvas.height = imageBitmap.height;
+     var ctx = canvas.getContext("2d");
+     ctx.drawImage(imageBitmap, 0, 0);
+
+    });
     /*
     if (notification === 'CAMERA_ON') {
 
@@ -97,8 +100,8 @@ module.exports = NodeHelper.create({
 
   sendSocketNotification: function(notification, payload) {
     if(notification === "INIT_CAMERA") {
-      this.init_camera(payload);
+      this.initCamera(payload);
     }
-  }
+  },
 
 });
