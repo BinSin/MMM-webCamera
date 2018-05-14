@@ -32,15 +32,17 @@ module.exports = NodeHelper.create({
 
   socketNotificationReceived: function(notification, payload) {
     if(notification == "INIT_CAMERA") {
-      initCamera(payload);
+      this.initCamera(payload);
     }
     if (notification == 'CAMERA_ON') {
-      Webcam = NodeWebcam.create( opts );
+      var self = this;
+      self.Webcam = NodeWebcam.create( opts );
       self.sendSocketNotification("SEND", opts);
     }
     else if (notification == "TAKE_A_PICTURE") {
+      var self = this;
       self.sendSocketNotification("SENDER", "abc");
-      Webcam.capture( "test_picture", function( err, data ) {} );
+      self.Webcam.capture( "test_picture", function( err, data ) {} );
     }
   },
 
