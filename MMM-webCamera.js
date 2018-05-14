@@ -33,4 +33,8 @@ Module.register("MMM-webCamera", {
 	  }
   },
 
+	socketNotificationReceived: function(notification, payload) {
+		
+	},
+
 });
