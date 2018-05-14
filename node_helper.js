@@ -16,7 +16,8 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-    opts = {
+    var self = this;
+    self.opts = {
       width: 1280,
       height: 720,
       quality: 100,
@@ -34,7 +35,12 @@ module.exports = NodeHelper.create({
       initCamera(payload);
     }
     if (notification == 'CAMERA_ON') {
-      Webcam = NodeWebcam.create( opts );
+      var self = this;
+      self.Webcam = NodeWebcam.create( opts );
+    }
+    else if (notification == "TAKE_A_PICTURE") {
+      var self = this;
+      self.Webcam.capture( "test_picture", function( err, data ) {} );
     }
   },
 
