@@ -10,6 +10,9 @@ var wcm = new WebCamera({
   videoTag: document.getElementById("video"),
     constraints: {
       video: {
+        width: 640,
+        height: 480,
+        /*
         width: payload.width,
         height: payload.height,
          quality: payload.quality,
@@ -18,6 +21,7 @@ var wcm = new WebCamera({
          output: payload.output,
          device: payload.device,
          callbackReturn: payload.callbackReturn,
+         */
     }
  }
 });
