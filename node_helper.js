@@ -35,7 +35,7 @@ var wcm = new WebCamera({
        }
    });
 
- wcm.startCamera();
+// wcm.startCamera();
 
 /*
  //grabFrame() takes a snapshot of the live video
@@ -53,7 +53,7 @@ var wcm = new WebCamera({
 module.exports = NodeHelper.create({
 
   start: function() {
-    console.log("Starting node helper for: " + this.name);
+    //console.log("Starting node helper for: " + this.name);
   },
 /*
   initCamera: funtion(payload) {
