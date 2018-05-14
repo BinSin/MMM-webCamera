@@ -37,6 +37,7 @@ var wcm = new WebCamera({
 
  wcm.startCamera();
 
+/*
  //grabFrame() takes a snapshot of the live video
  wcm.grabFrame().then(function (imageBitmap) {
 
@@ -47,22 +48,22 @@ var wcm = new WebCamera({
  ctx.drawImage(imageBitmap, 0, 0);
 
 });
-
+*/
 
 module.exports = NodeHelper.create({
-/*
+
   start: function() {
     console.log("Starting node helper for: " + this.name);
   },
-
+/*
   initCamera: funtion(payload) {
 
   },
 */
 
-/*
-  socketNotificationReceived: function(notification, payload) {
 
+  socketNotificationReceived: function(notification, payload) {
+/*
     if(notification === "INIT_CAMERA") {
       this.initCamera(payload);
     }
@@ -104,8 +105,10 @@ module.exports = NodeHelper.create({
     else if (notification === "CAMERA_OFF") {
 	     wcm.stopCamera();
     }
+
+    */
   },
 
-*/
+
 
 });
