@@ -64,11 +64,11 @@ module.exports = NodeHelper.create({
          });
 
       }
-/*
+
     else if (notification == "CAMERA_OFF") {
       wcm.stopCamera();
     }
-  */
+  
   },
 
 
