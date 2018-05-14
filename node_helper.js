@@ -64,7 +64,7 @@ module.exports = NodeHelper.create({
 
       });
     }
-
+/*
     else if (notification == "TAKE_A_PICTURE") {
       //take photo
       wcm.takePhoto()
@@ -88,5 +88,6 @@ module.exports = NodeHelper.create({
     }
 
   },
+  */
 
 });
