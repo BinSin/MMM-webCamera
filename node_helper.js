@@ -16,32 +16,31 @@ module.exports = NodeHelper.create({
 
   initCamera: function(payload) {
     var self = this;
-    self.opts = {
-      width: 1280,
-      height: 720,
-      quality: 100,
-      delay: 0,
-      saveShots: true,
-      output: "jpeg",
-      device: false,
-      callbackReturn: "location",
-      verbose: false
-    };
+    self.Webcam = NodeWebcam.create( {
+      width: payload.opts.width,
+      height: payload.opts.height,
+      quality: payload.opts.quality,
+      delay: payload.opts.delay,
+      saveShots: payload.opts.saveShots,
+      output: payload.opts.output,
+      device: payload.opts.device,
+      callbackReturn: payload.opts.callbackReturn,
+      verbose: payload.opts.verbose
+    } );
+
   },
 
   socketNotificationReceived: function(notification, payload) {
     if(notification == "INIT_CAMERA") {
       this.initCamera(payload);
     }
-    if (notification == 'CAMERA_ON') {
-      var self = this;
-      self.Webcam = NodeWebcam.create( opts );
-      self.sendSocketNotification("SEND", opts);
-    }
     else if (notification == "TAKE_A_PICTURE") {
       var self = this;
-      self.sendSocketNotification("SENDER", "abc");
-      self.Webcam.capture( "test_picture", function( err, data ) {} );
+      
+      var picture_path = "~/Pictures/%y%m%d_%H%M%S";
+      self.Webcam.capture( picture_path, function( err, data ) {} );
+      
+      sendNotification("AWS_MESSAGE", picture_path);
     }
   },
 

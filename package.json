@@ -20,7 +20,12 @@
   },
   "homepage": "https://github.com/BinSin/MMM-webCamera#readme",
   "dependencies": {
+    "aws-sdk": "^2.241.1",
     "child-process-promise": "^2.2.1",
-    "webcam.js": "^1.0.1"
+    "events": "^2.0.0",
+    "node-webcam": "^0.4.3",
+    "remote": "^0.2.6",
+    "sender": "0.0.1",
+    "stylelint": "^9.2.0"
   }
 }
