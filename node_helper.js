@@ -5,6 +5,7 @@
 
 var NodeHelper = require("node_helper");
 var NodeWebcam = require("node-webcam");
+var moment = require('moment');
 var opts = {};
 var Webcam = null;
 
@@ -16,7 +17,7 @@ module.exports = NodeHelper.create({
 
   initCamera: function(payload) {
     var self = this;
-    self.Webcam = NodeWebcam.create( {
+    this.Webcam = NodeWebcam.create( {
       width: payload.opts.width,
       height: payload.opts.height,
       quality: payload.opts.quality,
@@ -27,7 +28,6 @@ module.exports = NodeHelper.create({
       callbackReturn: payload.opts.callbackReturn,
       verbose: payload.opts.verbose
     } );
-
   },
 
   socketNotificationReceived: function(notification, payload) {
@@ -37,11 +37,22 @@ module.exports = NodeHelper.create({
     else if (notification == "TAKE_A_PICTURE") {
       var self = this;
       
-      var picture_path = "~/Pictures/%y%m%d_%H%M%S";
+      var picture_path = "~/Pictures/" + moment().format('YYMMDD_hhmmss');
       self.Webcam.capture( picture_path, function( err, data ) {} );
       
-      sendNotification("AWS_MESSAGE", picture_path);
+      self.sendSocketNotification("SEND_SUCCESS", picture_path);
     }
+    else if(notification ==  "RECEIVE_SUCCESS") {
+      var exec = require('child-process-promise').exec;
+      exec('sudo fbi -T 2 ' + payload + '.' + 'jpg');
+      self.sendSocketNotification("SEND_FINISH", payload);
+    }
+    else if(notification == "RECEIVE_FINISH") {
+      var exec = require('child-process-promise').exec;
+      exec("sudo /bin/kill $(ps aux | grep '$search_terms' | grep -v 'grep' | awk '{print $2}')");
+      self.sendNotification("AWS_MESSAGE", payload);
+    }
+
   },
 
 });
