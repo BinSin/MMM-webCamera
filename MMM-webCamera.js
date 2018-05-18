@@ -25,25 +25,13 @@ Module.register("MMM-webCamera", {
   notificationReceived: function(notification, payload, sender) {
 	 var self = this;
 	 if(sender) {
-			if (notification == "COMMAND") {
-				if (payload == " take a picture") {
-					console.log("take a picture");
-					self.sendSocketNotification("TAKE_A_PICTURE", payload);
-				}
+		if (notification == "COMMAND") {
+			if (payload == " take a picture") {
+				console.log("take a picture");
+				self.sendSocketNotification("TAKE_A_PICTURE", payload);
 			}
-	  }
+		}
+	 }
   },
-
-  socketNotificationReceived: function(notification, payload) {
-	var self = this;
-	if(notification == "SEND_SUCCESS") {
-		self.sendSocketNotification("RECEIVE_SUCCESS", payload);
-		console.log("123" + payload);
-	}
-	else if(notification == "SEND_FINISH") {
-		self.sendSocketNotification("RECEIVE_FINISH", payload);
-		console.log("453" + payload);
-	}
-  }
 
 });
