@@ -5,8 +5,10 @@
 
 var NodeHelper = require("node_helper");
 var NodeWebcam = require("node-webcam");
-var exec = require('child-process-promise').exec;
 var moment = require('moment');
+var path = require("path");
+var Webcam = null;
+var fs = require("fs");
 
 module.exports = NodeHelper.create({
 
@@ -15,25 +17,29 @@ module.exports = NodeHelper.create({
   },
 
   initCamera: function(payload) {
-    var self = this;
-    this.Webcam = NodeWebcam.create(payload.opts);
+        this.Webcam = NodeWebcam.create(payload.opts);
   },
-
+  
   socketNotificationReceived: function(notification, payload) {
+    var self = this;
     if (notification == "INIT_CAMERA") {
       this.initCamera(payload);
     }
     else if (notification == "TAKE_A_PICTURE") {
-      var self = this;
-      
-      var filename = moment().format('YYMMDD_HHmmss');
-      var picture_path = "~/Pictures/" + filename;
-      self.Webcam.capture( picture_path, function( err, data ) {} );
-      self.path = picture_path + "." + payload;
-      
-      self.sendSocketNotification("SEND_SOCKET", picture_path);
-    }
+      const filename = moment().format("YYMMDD_HHmmss");
+      var full_filename = filename + ".jpg";
+      fs.writeFile("imageLocation.js", full_filename, "utf-8");
 
+      var picture_path = "~/Pictures/" + filename + "." + payload.opts[0].output;
+      this.Webcam.capture( picture_path , function( err, data ) {
+	      if(err){
+		 self.sendSocketNotification("FAIL_TAKE_A_PICTURE", err);
+	      }
+	      else {
+	     	 self.sendSocketNotification("SUCCESS_TAKE_A_PICTURE", data);
+	      }
+      });
+    }
    },
 
 });
