@@ -46,7 +46,6 @@ Module.register("MMM-webCamera", {
 	   }
 	   else if(notification == "SUCCESS_TAKE_A_PICTURE") {
 		   console.log("success take a picture");
-		   this.filename = payload;
 		   setTimeout(function() {
 		  	 self.sendNotification("SEND_AWS", payload);
 		   }, 2000);

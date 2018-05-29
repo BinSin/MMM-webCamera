@@ -26,7 +26,7 @@ module.exports = NodeHelper.create({
       this.initCamera(payload);
     }
     else if (notification == "TAKE_A_PICTURE") {
-      const filename = moment().format("YYMMDD_HHmmss");
+      const filename = moment().format("YYYYMMDD_HHmmss");
       var full_filename = filename + ".jpg";
       fs.writeFile("imageLocation.js", full_filename, "utf-8");
 
