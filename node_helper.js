@@ -40,6 +40,17 @@ module.exports = NodeHelper.create({
 	      }
       });
     }
-   },
+    else if (notification == "MASTER") {
+      var picture_path = "~/Pictures/Master/person.jpg";
+      this.Webcam.capture( picture_path, function( err, data ) {
+	      if(err){
+		 self.sendSocketNotification("FAIL_MASTER", err);
+	      }
+	      else {
+	     	 self.sendSocketNotification("SUCCESS_MASTER", data);
+	      }
+      });
+    }
+  },
 
 });

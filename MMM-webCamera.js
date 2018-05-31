@@ -33,7 +33,10 @@ Module.register("MMM-webCamera", {
 			if (payload == " take a picture") {
 				console.log("take a picture");
 				self.sendSocketNotification("TAKE_A_PICTURE", self.config);
-				self.sendNotification("RESET_PLAYER_LIST", payload);
+			}
+			else if (payload == " wake up") {
+				console.log("wake up mirror");
+				self.sendSocketNotification("MASTER", self.config);
 			}
 		}
 	 }
@@ -48,6 +51,15 @@ Module.register("MMM-webCamera", {
 		   console.log("success take a picture");
 		   setTimeout(function() {
 		  	 self.sendNotification("SEND_AWS", payload);
+		   }, 2000);
+	   }
+	   else if(notification == "FAIL_MASTER") {
+		   console.log("fail take a picture master");
+	   }
+	   else if(notification == "SUCCESS_MASTER") {
+		   console.log("success take a picture master");
+		   setTimeout(function() {
+		  	 self.sendNotification("SEND_AWS_MASTER", payload);
 		   }, 2000);
 	   }
   },
